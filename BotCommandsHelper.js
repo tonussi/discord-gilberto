@@ -2,19 +2,18 @@ const config = {
   PREFIX: ".",
   INVITE: "Hello there, Come To My _Server_ // Olá amigo! Venha Para Nosso _Servidor_ // https://discord.gg/AzAKua8.",
   HELP: {
-      en: "This bot, called \"Gilberto\" (from Wilbur \"Gilberto\" Norman Pickering), \
-show Bible verses from WPNT (A New Translation of The New Testament Text Based on \
-f³⁵ Manuscripts). Also, this bot, show verses from ACF (Almeida Corrigida Fiel 2007), \
-a Portuguese version of the Bible based on Masoretic Texts and Textus Receptus. \
-The bot was made to Portuguese users so the references will mostly be equated in Portuguese. \
-Type .c and push Enter to show the commands for you.",
-      pt: "Esse bot, chamado \"Gilberto\" (de Wilbur \"Gilberto\" Norman Pickering), \
-mostra versos bíblicos da WPNT (Uma Nova Tradução do Novo Testamento Baseado \
-nos manuscriptos da família f³⁵). Também, esse bot, mostra versos da ACF \
-(Almeida Corrigida Fiel 2007), uma versão Portuguesa da Bíblia baseada no \
-Texto Masorético e Textus Receptus. O bot foi feito para usuários da língua portuguesa. \
-Por isso as referências são estilo portugues brasileiro i.e. João, Marcos, Gênesis, etc. \
-Utilize .c para ver os comandos do Bot."
+    en: "This bot shows bible verses from Wpnt. Wpnt is a translation of the new testament text based on \
+the manuscripts of the family 35. This bot also shows verses from acf (Almeida corrigida e fiel 2007), \
+a portuguese version of the bible based on masoretic texts and textus receptus. \
+This bot was destined to portuguese people, so the references will mostly be in portuguese. \
+Type /c and press enter to show a list of commands and descriptions.",
+    pt: "O principal objetivo deste bot é ensinar sobre manuscritos do texto do novo testamento. \
+Este bot mostra versos bíblicos da Wpnt. Wpnt é uma tradução baseada nos manuscritos da família 35. \
+Este bost também repassa versos da Acf (Almeida corrigida e fiel 2007), \
+uma versão em língua brasileira da Bíblia. Acf é baseada no Texto masorético e Textus receptus. \
+O bot foi feito para usuários da língua brasileira. \
+por isto as referências estão em brasileiro i.e. joão, marcos, gênesis, etc. \
+Utilize /c para ver comandos e descrições."
   },
   ACTIVITY: "PRUNCH",
   COMMANDS: "Comandos do bot // Bot commands =>\n\n\
@@ -43,7 +42,7 @@ Utilize .c para ver os comandos do Bot."
 .c Para ver os todos comandos disponiveis\n\
 .a Mostra todas as Bíblias disponíveis e Comentários Bíblicos\n\
 .refs Mostra as possibilidades de formatação das referências bíblicas\n\
-.iv Para pegar um link permanente do servidor de discord do Prunch.org"
+.iv Para pegar um link permanente do chat!"
 }
 
 module.exports.config = config;
