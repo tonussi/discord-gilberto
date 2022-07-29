@@ -5,9 +5,11 @@ const client = new Discord.Client();
 
 const viterp = require("./BibleCommandInterpreter");
 const citerp = require("./CommentaryCommandInterpreter");
+const sinter = require("./BibleVerseSentiment")
 
 const bci = new viterp.BibleCommandInterpreter();
 const cci = new citerp.CommentaryCommandInterpreter();
+const bvs = new sinter.BibleVerseSentiment();
 
 const hexutil = require("./ColorHexUtil");
 
@@ -45,8 +47,18 @@ client.on('message', msg => {
         let embed = buildDiscordRichEmbed(detail);
         return msg.reply(embed);
     } else if (command === 'bs') {
-        let versesParses = bci.parseWords(args);
-        let embed = buildSearchRichEmbed(versesParses);
+        let parsedArgs = bci.parseWords(args);
+        if (!parsedArgs) {
+            return msg.reply("Não providenciou nada para procurar");
+        }
+        let parsedVerses = bci.searchArgsByBookNumberAndBibleBook(parsedArgs.tokens, parsedArgs.book_number, parsedArgs.bible_book);
+        let embed = buildSearchRichEmbed(parsedVerses);
+        return msg.reply(embed);
+    } else if (command === 'q') {
+        let results = bvs.perform(args);
+        let bible_book = bci.getBibleById("acf");
+        let parsedVerses = bci.searchArgsByBibleBook(results.tokens, bible_book);
+        let embed = buildSearchRichEmbed(parsedVerses);
         return msg.reply(embed);
     } else if (command === 'hen') return msg.reply(bch.config.HELP.en);
     else if (command === 'hpt') return msg.reply(bch.config.HELP.pt);

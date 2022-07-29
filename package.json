@@ -31,6 +31,7 @@
     "discord.js": "^12",
     "moment": "^2.23.0",
     "turndown": "^5.0.1",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.19",
+    "natural": "^5.2.3"
   }
 }
