@@ -103,13 +103,12 @@ function prepareVersesToContext(versesParsed) {
 async function explainContext(context) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI);
   const model = genAI.getGenerativeModel({
-    systemInstruction: 'You are a Bible expert, your name is Gilberto.',
+    systemInstruction: 'Você é especialista em Bíblia, seu nome é Gilberto.',
     model: 'gemini-1.5-flash',
   });
 
-  const prompt = `Please, explain the context of these following Bible verses \
-    here: ${context}. But keep it simple, explaining it in a few words to a maximum \
-    of 1000 characters.`;
+  const prompt = `Por favor, explique esses versos Bíblicos aqui \
+    here: ${context}. Mantenha simples, explicando em um máximo de 1000 caracteres.`;
 
   const result = await model.generateContent(prompt);
   return result.response.text();
