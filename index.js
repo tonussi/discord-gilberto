@@ -1,6 +1,8 @@
 // Discord.js bot
 const Discord = require('discord.js');
 
+require('dotenv').config();
+
 const client = new Discord.Client();
 
 const viterp = require("./BibleCommandInterpreter");
