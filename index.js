@@ -52,6 +52,7 @@ client.on('message', async (msg) => {
     versesContext = prepareVersesToContext(versesParsed);
     analysis = await explainContext(`${osis} ${versesContext}`);
     embed = buildDiscordRichEmbed(analysis);
+    return msg.reply(embed);
   } else if (command === 'bv') {
     versesParsed = bci.parseRef(args);
     osis = cci.getOsis(args);
