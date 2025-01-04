@@ -12,47 +12,47 @@ To contribute you must understand a few things: How Sqlite works, Javascript (No
 
 **Comandos do bot // Bot commands =>**
 
-+ .hen for a description of the bot
-+ .hpt para uma descrição do bot
+- .hen for a description of the bot
+- .hpt para uma descrição do bot
 
 **Bible Description // Descrição da Edição Bíblica**
 
-+ .bd ACF para detalhes da ACF sendo usada
-+ .bd WPNT for details of this version being used
+- .bd ACF para detalhes da ACF sendo usada
+- .bd WPNT for details of this version being used
 
 **Commentary Description // Descrição do Comentário**
 
-+ .cd RWP para detalhes do comentário sendo usado
-+ .cd POOLE for details of this commentary being used
+- .cd RWP para detalhes do comentário sendo usado
+- .cd POOLE for details of this commentary being used
 
 **Bible Verse // Verso Bíblico**
 
-+ .bv João 1:1 ACF
-+ .bv Gênesis 1:1 ACF
-+ .bv João 13:16 WPNT
+- .bv João 1:1 ACF
+- .bv Gênesis 1:1 ACF
+- .bv João 13:16 WPNT
 
 **Bible Commentary // Comentário Bíblico**
 
-+ .bc João 1:1 RWP
-+ .bc Gênesis 1:1 POOLE
-+ .a Mostra todas as Bíblias disponíveis e Comentários Bíblicos
-+ .c para ver os comandos
-+ .iv para pegar um link permanente do servidor de discord do Prunch.org
+- .bc João 1:1 RWP
+- .bc Gênesis 1:1 POOLE
+- .a Mostra todas as Bíblias disponíveis e Comentários Bíblicos
+- .c para ver os comandos
+- .iv para pegar um link permanente do servidor de discord do Prunch.org
 
 **Bible Words Search // Busca Palavras na Bíblia**
 
-+ .bs amor,irmão,salvar,ovelha,... ACF João
-+ .bs amor,irmão,salvar,ovelha,... ACF Marcos
-+ .bs amor,irmão,salvar,ovelha,... ACF Gênesis
-+ .bs amor,irmão,salvar,ovelha,... ACF Apocalipse
-+ .bs love,Jesus,brothers WPNT Mateus
+- .bs amor,irmão,salvar,ovelha,... ACF João
+- .bs amor,irmão,salvar,ovelha,... ACF Marcos
+- .bs amor,irmão,salvar,ovelha,... ACF Gênesis
+- .bs amor,irmão,salvar,ovelha,... ACF Apocalipse
+- .bs love,Jesus,brothers WPNT Mateus
 
 **Extra Commands // Outros Comandos**
 
-+ .c para ver os comandos
-+ .iv para pegar um link permanente do servidor de discord do Prunch.org"
-+ .a Mostra todas as Bíblias disponíveis e Comentários Bíblicos
-+ .refs mostra as possibilidades de formatação das referências bíblicas
+- .c para ver os comandos
+- .iv para pegar um link permanente do servidor de discord do Prunch.org"
+- .a Mostra todas as Bíblias disponíveis e Comentários Bíblicos
+- .refs mostra as possibilidades de formatação das referências bíblicas
 
 # Biblical References Format // Formatos das Referências Bíblicas
 

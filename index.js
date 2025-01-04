@@ -1,5 +1,6 @@
 // Discord.js bot
 const Discord = require('discord.js');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 require('dotenv').config();
 
@@ -22,49 +23,69 @@ const cmtversions = require('./CommentaryVersionEnum');
 
 const constants = require('./BibleConstants');
 
+const RANDOM_ACTIVITY =
+  bch.config.ACTIVITIES[
+    Math.floor(Math.random() * bch.config.ACTIVITIES.length)
+  ];
+
 client.on('ready', () => {
-  client.user.setActivity(bch.config.ACTIVITY, { type: 'WATCHING' });
+  client.user.setActivity(RANDOM_ACTIVITY, { type: 'CUSTOM' });
 });
 
-client.on('message', (msg) => {
+client.on('message', async (msg) => {
   if (!msg.content.startsWith(bch.config.PREFIX) || !msg.guild) return;
   const command = msg.content.split(' ')[0].substr(bch.config.PREFIX.length);
   const args = msg.content.split(' ').slice(1).join(' ');
+  let analysis,
+    versesParsed,
+    detail,
+    osis,
+    embed,
+    parsedArgs,
+    results,
+    versesContext,
+    bibleBook;
 
-  if (command === 'bv') {
-    let versesParsed = bci.parseRef(args);
-    let osis = cci.getOsis(args);
-    let embed = buildVerseRichEmbed(versesParsed);
+  if (command === 'explain') {
+    versesParsed = bci.parseRef(args);
+    osis = cci.getOsis(args);
+    versesContext = prepareVersesToContext(versesParsed);
+    analysis = await explainContext(`${osis} ${versesContext}`);
+    embed = buildDiscordRichEmbed(analysis);
+  } else if (command === 'bv') {
+    versesParsed = bci.parseRef(args);
+    osis = cci.getOsis(args);
+    embed = buildVerseRichEmbed(versesParsed);
     return msg.reply(embed);
   } else if (command === 'bd') {
-    let detail = bci.parseDetail(args).getEditionDescrition();
-    let embed = buildDiscordRichEmbed(detail);
+    detail = bci.parseDetail(args).getEditionDescrition();
+    embed = buildDiscordRichEmbed(detail);
     return msg.reply(embed);
   } else if (command === 'bc') {
-    let versesParsed = cci.parseRef(args);
-    let embed = buildCommentaryRichEmbed(versesParsed);
+    versesParsed = cci.parseRef(args);
+    embed = buildCommentaryRichEmbed(versesParsed);
     return msg.reply(embed);
   } else if (command === 'cd') {
-    let detail = cci.parseDetail(args).getEditionDescrition();
-    let embed = buildDiscordRichEmbed(detail);
+    detail = cci.parseDetail(args).getEditionDescrition();
+    embed = buildDiscordRichEmbed(detail);
     return msg.reply(embed);
   } else if (command === 'bs') {
-    let parsedArgs = bci.parseWords(args);
+    parsedArgs = bci.parseWords(args);
     if (!parsedArgs) {
       return msg.reply('Não providenciou nada para procurar');
     }
-    let parsedVerses = bci.searchArgsByBookNumberAndBibleBook(
+    parsedVerses = bci.searchArgsByBookNumberAndBibleBook(
       parsedArgs.tokens,
       parsedArgs.book_number,
       parsedArgs.bible_book
     );
-    let embed = buildSearchRichEmbed(parsedVerses);
+    embed = buildSearchRichEmbed(parsedVerses);
     return msg.reply(embed);
   } else if (command === 'q') {
-    let results = bvs.perform(args);
-    let bible_book = bci.getBibleById('acf');
-    let parsedVerses = bci.searchArgsByBibleBook(results.tokens, bible_book);
-    let embed = buildSearchRichEmbed(parsedVerses);
+    results = bvs.perform(args);
+    bibleBook = bci.getBibleById('acf');
+    parsedVerses = bci.searchArgsByBibleBook(results.tokens, bibleBook);
+    embed = buildSearchRichEmbed(parsedVerses);
     return msg.reply(embed);
   } else if (command === 'hen') return msg.reply(bch.config.HELP.en);
   else if (command === 'hpt') return msg.reply(bch.config.HELP.pt);
@@ -74,6 +95,25 @@ client.on('message', (msg) => {
   else if (command === 'refs') return msg.reply(getAllRefPtBrFormat());
   else return;
 });
+
+function prepareVersesToContext(versesParsed) {
+  return versesParsed.map((v) => `${v.scripture}\n`);
+}
+
+async function explainContext(context) {
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI);
+  const model = genAI.getGenerativeModel({
+    systemInstruction: 'You are a Bible expert, your name is Gilberto.',
+    model: 'gemini-1.5-flash',
+  });
+
+  const prompt = `Please, explain the context of these following Bible verses \
+    here: ${context}. But keep it simple, explaining it in a few words to a maximum \
+    of 1000 characters.`;
+
+  const result = await model.generateContent(prompt);
+  return result.response.text();
+}
 
 function getAllRefPtBrFormat() {
   let aux = '**Refs Bíblicas // Biblical Refs (PT-BR FORMAT)**\n\n';

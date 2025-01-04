@@ -1,7 +1,7 @@
 const CommentaryVersionEnum = {
-  POOLE: "POOLE",
-  RWP: "RWP"
-}
+  POOLE: 'POOLE',
+  RWP: 'RWP',
+};
 
 Object.freeze(CommentaryVersionEnum);
 

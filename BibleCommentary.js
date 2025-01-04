@@ -1,13 +1,22 @@
-const constants = require("./BibleConstants");
-const dateformatter = require("./MomentUtil");
+const constants = require('./BibleConstants');
+const dateformatter = require('./MomentUtil');
 const TurndownService = require('turndown');
 const turndownService = new TurndownService();
 
 class CommentaryDetail {
-  constructor(cmtTitle, abbreviation, cmtDescription,
-              author, cmtVersion, versionDate,
-              publishDate, publisher, creator,
-              cmtSource, cmtLanguage) {
+  constructor(
+    cmtTitle,
+    abbreviation,
+    cmtDescription,
+    author,
+    cmtVersion,
+    versionDate,
+    publishDate,
+    publisher,
+    creator,
+    cmtSource,
+    cmtLanguage
+  ) {
     this.cmtTitle = cmtTitle;
     this.abbreviation = abbreviation.toUpperCase();
     this.cmtDescription = cmtDescription;

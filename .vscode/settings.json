@@ -1,4 +1,4 @@
 {
-    "workbench.editor.enablePreview": false,
-    "editor.formatOnSave": true
+  "workbench.editor.enablePreview": false,
+  "editor.formatOnSave": true
 }

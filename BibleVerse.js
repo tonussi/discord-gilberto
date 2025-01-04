@@ -1,12 +1,21 @@
-const constants = require("./BibleConstants");
-const dateformatter = require("./MomentUtil");
+const constants = require('./BibleConstants');
+const dateformatter = require('./MomentUtil');
 const TurndownService = require('turndown');
 const turndownService = new TurndownService();
 
 class EditionDetail {
-  constructor(editionDescription, abbreviation, comments,
-    editionVersion, versionDate, publishDate,
-    rightToLeft, ot, nt, strong) {
+  constructor(
+    editionDescription,
+    abbreviation,
+    comments,
+    editionVersion,
+    versionDate,
+    publishDate,
+    rightToLeft,
+    ot,
+    nt,
+    strong
+  ) {
     this.editionDescription = editionDescription;
     this.abbreviation = abbreviation.toUpperCase();
     this.comments = `${turndownService.turndown(comments).slice(0, 500)}...`;
@@ -42,7 +51,9 @@ class Verse {
   }
 
   getScripture() {
-    return this.convertMyswordTagsToDiscordMarkdown(this.removeStrongTags(this.scripture));
+    return this.convertMyswordTagsToDiscordMarkdown(
+      this.removeStrongTags(this.scripture)
+    );
   }
 
   removeStrongTags(text) {

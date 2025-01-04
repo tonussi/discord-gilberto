@@ -13,7 +13,7 @@ class UrlDetail {
     Title ${this.title}
     Description ${this.description}
     Link ${this.link}
-    `
+    `;
   }
 }
 
@@ -32,5 +32,5 @@ class Sitemap {
 module.exports.Sitemap = Sitemap;
 module.exports.UrlDetail = UrlDetail;
 
-const path = require('path')
-new Sitemap(dbpath = path.join(__dirname, '.', 'sitemaps', 'ror.xml'));
+const path = require('path');
+new Sitemap((dbpath = path.join(__dirname, '.', 'sitemaps', 'ror.xml')));

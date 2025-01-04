@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
-const verselib = require("./BibleVerse");
-const versions = require("./BibleVersionEnum");
+const verselib = require('./BibleVerse');
+const versions = require('./BibleVersionEnum');
 
 class BibleMedium {
   /**
@@ -24,7 +24,12 @@ class BibleMedium {
     console.log(sql);
 
     if (row) {
-      return new verselib.Verse(row.Book, row.Chapter, row.Verse, row.Scripture);
+      return new verselib.Verse(
+        row.Book,
+        row.Chapter,
+        row.Verse,
+        row.Scripture
+      );
     } else {
       return new verselib.Verse(0, 0, 0, 'Scripture Not Found');
     }
@@ -37,8 +42,10 @@ class BibleMedium {
   }
 
   searchTextBy(words, book_number) {
-    let aux = "(";
-    let sql_injection_barrier = RegExp(/\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|UPDATE|UNION( +ALL){0,1})\b/gim);
+    let aux = '(';
+    let sql_injection_barrier = RegExp(
+      /\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|UPDATE|UNION( +ALL){0,1})\b/gim
+    );
 
     if (words instanceof Array) {
       for (let index = 0; index < words.length - 1; index++) {
@@ -66,7 +73,14 @@ class BibleMedium {
       let listOfVerses = Array();
       for (let index = 0; index < rows.length; index++) {
         const element = rows[index];
-        listOfVerses.push(new verselib.Verse(element.Book, element.Chapter, element.Verse, element.Scripture));
+        listOfVerses.push(
+          new verselib.Verse(
+            element.Book,
+            element.Chapter,
+            element.Verse,
+            element.Scripture
+          )
+        );
       }
       return listOfVerses;
     } else {
@@ -75,8 +89,10 @@ class BibleMedium {
   }
 
   searchAnswersWholeBible(words) {
-    let aux = "(";
-    let sql_injection_barrier = RegExp(/\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|UPDATE|UNION( +ALL){0,1})\b/gim);
+    let aux = '(';
+    let sql_injection_barrier = RegExp(
+      /\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|UPDATE|UNION( +ALL){0,1})\b/gim
+    );
 
     if (words instanceof Array) {
       for (let index = 0; index < words.length - 1; index++) {
@@ -104,7 +120,14 @@ class BibleMedium {
       let listOfVerses = Array();
       for (let index = 0; index < rows.length; index++) {
         const element = rows[index];
-        listOfVerses.push(new verselib.Verse(element.Book, element.Chapter, element.Verse, element.Scripture));
+        listOfVerses.push(
+          new verselib.Verse(
+            element.Book,
+            element.Chapter,
+            element.Verse,
+            element.Scripture
+          )
+        );
       }
       return listOfVerses;
     } else {
