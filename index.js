@@ -29,6 +29,7 @@ client.on('message', async (msg) => {
   const answer = await handlerFunction(args);
 
   if (!answer) return;
+
   return msg.reply(answer);
 });
 
