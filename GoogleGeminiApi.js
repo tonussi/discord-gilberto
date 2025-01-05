@@ -30,4 +30,5 @@ async function listBibleVersesThatExplainContext(context) {
 
 module.exports = {
   explainContext,
+  listBibleVersesThatExplainContext,
 };
