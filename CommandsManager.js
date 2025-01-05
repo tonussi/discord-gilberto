@@ -26,6 +26,13 @@ const handleExplain = async (args) => {
   return embed;
 };
 
+const handleLv = async (args) => {
+  const osis = cci.getOsis(args);
+  const analysis = await explainContext(`${osis} ${osis}`);
+  const embed = buildDiscordRichEmbed(analysis);
+  return embed;
+};
+
 const handleBv = (args) => {
   const versesParsed = bci.parseRef(args);
   const osis = cci.getOsis(args); // NOSONAR
@@ -99,6 +106,7 @@ const handleRefs = () => {
 
 const actions = {
   explain: handleExplain,
+  lv: handleLv,
   bv: handleBv,
   bd: handleBd,
   bc: handleBc,
