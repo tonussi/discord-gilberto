@@ -1,4 +1,5 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { logger } = require('./Logger');
 
 async function explain(context) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI);
@@ -39,6 +40,7 @@ const perform = async (args, type) => {
   try {
     return await actions[type](args);
   } catch (error) {
+    logger.error(error);
     return;
   }
 };
