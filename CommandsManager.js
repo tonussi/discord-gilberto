@@ -27,9 +27,7 @@ const handleExplain = async (args) => {
 };
 
 const handleLv = async (args) => {
-  const osis = cci.getOsis(args);
-  const analysis = await explainContext(`${osis} ${osis}`);
-  const embed = buildDiscordRichEmbed(analysis);
+  const embed = buildDiscordRichEmbed(args);
   return embed;
 };
 
