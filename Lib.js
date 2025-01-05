@@ -94,6 +94,7 @@ function buildVerseRichEmbed(versesParsed) {
 }
 
 function buildDiscordRichEmbed(text) {
+  if (!text) return;
   let embed = new Discord.MessageEmbed();
   embed.setColor(hexutil.generateHexColor());
   if (text.length < 2048) {
