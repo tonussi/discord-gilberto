@@ -10,10 +10,7 @@ const {
   getAllRefPtBrFormat,
   buildCommentaryRichEmbed,
 } = require('./Lib');
-const {
-  explainContext,
-  listBibleVersesThatExplainContext,
-} = require('./GoogleGeminiApi');
+const GoogleGeminiApi = require('./GoogleGeminiApi');
 
 const bch = require('./BotCommandsHelper');
 const bci = new viterp.BibleCommandInterpreter();
@@ -24,13 +21,16 @@ const handleExplain = async (args) => {
   const versesParsed = bci.parseRef(args);
   const osis = cci.getOsis(args);
   const versesContext = prepareVersesToContext(versesParsed);
-  const analysis = await explainContext(`${osis} ${versesContext}`);
+  const analysis = await GoogleGeminiApi.perform(
+    `${osis} ${versesContext}`,
+    'explain'
+  );
   const embed = buildDiscordRichEmbed(analysis);
   return embed;
 };
 
 const handleLv = async (args) => {
-  const analysis = await listBibleVersesThatExplainContext(args);
+  const analysis = await GoogleGeminiApi.perform(args, 'list');
   const embed = buildDiscordRichEmbed(analysis);
   return embed;
 };

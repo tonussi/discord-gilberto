@@ -1,6 +1,6 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-async function explainContext(context) {
+async function explain(context) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI);
   const model = genAI.getGenerativeModel({
     systemInstruction:
@@ -14,7 +14,7 @@ async function explainContext(context) {
   return result.response.text();
 }
 
-async function listBibleVersesThatExplainContext(context) {
+async function list(context) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI);
   const model = genAI.getGenerativeModel({
     systemInstruction:
@@ -28,7 +28,21 @@ async function listBibleVersesThatExplainContext(context) {
   return result.response.text();
 }
 
+const actions = {
+  explain,
+  list,
+};
+
+const perform = async (args, type) => {
+  if (!actions[type]) return;
+
+  try {
+    return await actions[type](args);
+  } catch (error) {
+    return;
+  }
+};
+
 module.exports = {
-  explainContext,
-  listBibleVersesThatExplainContext,
+  perform,
 };
